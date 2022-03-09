@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encrypt Pass - suprxd</title>
+</head>
+
+<body>
+    <h2>Instructions</h2>
+    <p>1. Input your pass</p>
+    <p>2. Input your pin</p>
+    <p>3. Copy the output</p>
+
+    <h3 id="output"></h3>
+    <script>
+        const input = prompt("Enter your input string");
+        const pin = prompt("Enter your pin");
+        const range = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890~!@#$%^&*()_+";
+        
+        let encrypted = [];
+        for (let i = 0, p = 0; i < input.length; i++) {
+            if (p % pin.length === 0) p = 0;
+            encrypted[i] = range[(range.indexOf(input[i]) + Number(pin[p++])) % range.length];
+        }
+        document.getElementById('output').innerHTML = encrypted.join("");
+    </script>
+</body>
+
+</html>
